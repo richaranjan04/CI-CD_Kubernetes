@@ -12,7 +12,7 @@ spec:
       labels:
         app: nginx
     spec:
-      container:
+      containers:
       - name: nginx
         image: richa0404/website:#{Build.BuildId}#
         ports:
