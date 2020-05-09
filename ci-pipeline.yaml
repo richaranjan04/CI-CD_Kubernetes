@@ -1,0 +1,26 @@
+steps:
+- task: Docker@0
+  displayName: 'Build an image'
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: DockerConnection
+    dockerFile: Dockerfile
+    imageName: 'richa0404/website:$(Build.BuildId)'
+
+- task: Docker@0
+  displayName: 'Push an image'
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: DockerConnection
+    action: 'Push an image'
+    imageName: 'richa0404/website:$(Build.BuildId)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    Contents: deployemnt.yaml
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+

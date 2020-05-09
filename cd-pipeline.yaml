@@ -1,0 +1,14 @@
+steps:
+- task: qetza.replacetokens.replacetokens-task.replacetokens@3
+  displayName: 'Replace tokens in deployemnt.yaml'
+  inputs:
+    rootDirectory: '$(System.DefaultWorkingDirectory)/_kubernetes-app-Docker container-CI/drop/'
+    targetFiles: deployemnt.yaml
+    
+- task: Kubernetes@0
+  displayName: 'kubectl apply'
+  inputs:
+    kubernetesServiceConnection: KubernetesConnection
+    command: apply
+    useConfigurationFile: true
+    configuration: '$(System.DefaultWorkingDirectory)/_kubernetes-app-Docker container-CI/drop/deployemnt.yaml'
