@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: richa0404/website:#{Build.BuildId}#
+        image: richa0404/cicd_pipeline:#{Build.BuildId}#
         ports:
         - containerPort: 80
