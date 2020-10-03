@@ -17,3 +17,10 @@ spec:
         image: richa0404/cicd_pipeline:#{Build.BuildId}#
         ports:
         - containerPort: 80
+        resources: # limits the usage of resources in cluster
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
